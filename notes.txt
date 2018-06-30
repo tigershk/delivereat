@@ -1,0 +1,6 @@
+webpack emitting bundle
+
+into static file so that index.js(server).
+
+going to load contents of file 
+
