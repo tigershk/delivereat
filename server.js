@@ -35,11 +35,35 @@ const menu = {
     id: 5,
     name: "Chicken Strips",
     img: "./static/chickenStrips.jpg",
-    price: 16.99
+    price: 7.99
+  },
+  6: {
+    id: 6,
+    name: "Potato Wedges",
+    img: "./static/wedges.jpg",
+    price: 6.99
+  },
+  7: {
+    id: 7,
+    name: "Mixed Leaf Salad",
+    img: "./static/salad.jpg",
+    price: 12.99
+  },
+  8: {
+    id: 8,
+    name: "Cheesy Garlic Bread",
+    img: "./static/garlicbread.jpg",
+    price: 14.99
+  },
+  9: {
+    id: 9,
+    name: "Chocolate Ice Cream",
+    img: "./static/icecream.jpg",
+    price: 4.99
   }
 };
 
-const orders = {};
+let orders = {};
 
 app.get('/', function (req, res) {
   res.render('index');
@@ -69,26 +93,18 @@ app.get('/menu/:menuItemId', function (req, res) {
 // });
 let lastOrderId = 457;
 
-app.post('/orders', function (req, res) {
+app.post('/menu', function (req, res) {
+  // orders = req.body;
   const newOrder = req.body;
   lastOrderId++;
   orders[lastOrderId] = newOrder;
 
   // res.json('admin', newOrder);
-  console.log(orders);
+  // console.log(orders);
 });
 
-// app.post('/menu', function (req, res) {
-//   const newOrder = req.body;
-//   lastOrderId++;
-//   orders[lastOrderId] = newOrder;
-
-//   res.json(newOrder);
-//   console.log(orders);
-// });
 
 app.listen(8080, function () {
   console.log('127.0.0.1:8080');
 });
 
-// creates all the paths - eg /menu gives us back json gives us back all the data

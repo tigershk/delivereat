@@ -1,69 +1,168 @@
 * {
   box-sizing: border-box;
 }
-
 body {
   margin: 20;
 }
-
 .header{
+  display: flex;
+  flex-direction:row;
   padding-left:40px;
   height:100px;
-  border-bottom:1px solid black;
-  
+  margin:auto;
+  border-bottom:1px solid rgb(247, 243, 243);
+  background-color: #efefef;
+ align-items: center;
 }
-
-h1{
-  font-family: 'Wendy One', sans-serif;
-  font-size:48px;
-  margin-left:40px;
+.header__logo{
+  margin-left:50px;
+  height:80px;
+  width: auto;
+  float: left;
 }
-
-h2{
-font-size:30px;
-margin-left: 30px;
-font-family: 'Caveat Brush', cursive;
-/* font-family: 'Caveat', cursi?ve; */
-
-}
-
 .menu{
   display:flex;
   flex-direction:row;
   flex:12;
 }
+
 .order__form{
   flex:8;
-  margin-left:100px;
-}
-
-.menu__item{
-  display:flex;
+  display: flex;
   flex-direction:row;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-content: space-between;
 
-  height:300px;
+  margin-top:30px;
+  margin-left: 30px;
+  margin-right: auto;
+}
+
+img{
+  display:none;
+}
+h1{
+  font-family: 'Wendy One', sans-serif;
   font-size:30px;
-  border-bottom:1px solid black;
 }
 
-.menu__item--pic{
-margin-top:50px;
-}
+h2{
+  font-size:20px;
+  font-family: 'Caveat Brush', cursive;
+  text-align:center
+  }
+  p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:25px;
+  }
 
-.menu__item--text{
-  margin-top:50px;
-  flex:8;
-  background: #ffeeee;
+  button:hover {
+    background-color: #008CBA;
+    color: white;
+    /* font-size:20px; */
+  }
+  .menu__item--confirm{
+    color: black;
+    border: 2px solid #0099CC;
+    margin:20px 5px;
+    border-radius:50%;
+    width:40px;
+    height:40px;
+  
+  }
+  
+  button{
+    margin-top:10px;
+    margin-left:30px;
+    margin-right:10px;
+    height:40px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:15px;
+  }
 
-}
-.menu__item--price{
- text-align: right;
-}
-.bill{
-  flex:4;
-  border-left:1px solid black;
+  .bill__total{
+    margin-top:30px;
+    margin-right:10px;
+    text-align:right;
+  }
+
+
+  .bill_total--sum{
+    border-top:2px solid black;
+  
+    }
+
+
+
+@media (min-width: 768px) {
+  img{
+    display:block;
+  }
+  h1{
+    font-family: 'Wendy One', sans-serif;
+    font-size:48px;
+
+    margin-left:60px;
+  }
+
+  h2{
   font-size:30px;
-margin-left: 30px;
-font-family: 'Caveat Brush', cursive;
+  /* margin-left: 30px; */
+  font-family: 'Caveat Brush', cursive;
+  text-align:center
+  }
+
+  .menu{
+    display:flex;
+    flex-direction:row;
+    flex:12;
+  }
+
+  .order__form{
+    flex:8;
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-between;
+  
+    margin-top:30px;
+    margin-left: 30px;
+    margin-right: auto;
+  }
+    
+  .menu__item{
+    background: rgb(233, 240, 236);
+    font-size:30px;
+    border: 2px outset black;
+    margin:10px 10px 20px;
+    text-align: center;
+    height: 380px;
+   }
+
+  .bill{
+    flex:3;
+    border-left:1px solid black;
+    font-size:30px;
+    margin-left: 30px;
+    font-family: 'Caveat Brush', cursive;
+  }
+
+  .bill__total{
+    margin-top:30px;
+    margin-right:30px;
+    text-align:right;
+  }
+
+
+  .bill__checkout{
+    width:100%;
+  }
+  .header__media {
+    justify-content: right;
+    margin:auto;
+  }
+  
+ 
 }

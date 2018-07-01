@@ -10,15 +10,22 @@ class Result extends React.Component {
     }
 
     this.handleChange = this.handleChange.bind(this)
-
   }
 
-  handleChange() {
-    this.setState({ pizzaQuantity: this.state.pizzaQuantity + 1 }, () => this.props.receiveOrder(this.props.menuItem.id, this.state.pizzaQuantity));
+  // Click handler for adding and decreasing quantities of pizza
+  handleChange(event) {
+    if (event.target.value === "increase") {
+      this.setState({ pizzaQuantity: this.state.pizzaQuantity + 1 }, () => this.props.receiveOrder(this.props.menuItem.name, this.state.pizzaQuantity));
+    }
+    else {
+      if (this.state.pizzaQuantity > 0) {
+        this.setState({ pizzaQuantity: this.state.pizzaQuantity - 1 }, () => this.props.receiveOrder(this.props.menuItem.name, this.state.pizzaQuantity));
+      }
+    }
   }
 
   render() {
-    // console.log
+
     return (
       <div className="menu__item" >
         <img src={this.props.menuItem.img}
@@ -26,18 +33,21 @@ class Result extends React.Component {
           width="auto"
           height="200" />
         <div className="menu__item--text">
-          <h2>{this.props.menuItem.name}</h2>
-          <div className="menu__item--price">
-            {this.props.menuItem.price} <br />
-            {/* <input
-            onChange={handleChange}
-            type="number"
-            className="order__quantity"
-            id="order__quantity"
-            name={menuItem.id}
-            min="1"
-            max="100"
-          /> */}
+          <h2>{this.props.menuItem.name}<br />
+            {/* <div className="menu__item--price"> */}
+
+            {(this.props.menuItem.price).toLocaleString('en-gb', { style: 'currency', currency: 'GBP' })}
+
+
+            <br />
+            <button
+              type="submit"
+              onClick={this.handleChange}
+              className="menu__item--confirm"
+              id="menu__item--confirm"
+              value="decrease"
+            >➖
+          </button>
 
             <button
               type="submit"
@@ -45,12 +55,12 @@ class Result extends React.Component {
               className="menu__item--confirm"
               id="menu__item--confirm"
               value="increase"
-            > +
+            >➕
           </button>
-
-          </div>
+          </h2>
+          {/* </div> */}
         </div>
-      </div>
+      </div >
 
     );
   }

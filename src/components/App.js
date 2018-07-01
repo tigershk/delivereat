@@ -33,11 +33,14 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="header">
-          <h1>🍕 Pizza Right Now</h1>
+          <img src='./static/pizzalogo.png' className="header__logo" /><h1>Pizza Right Now!</h1>
+          <div class="header__media">
+            <img src="./static/twitter.png" height="50px" />
+          </div>
+          <h2>☎ 0777 112 8224</h2>
         </div>
 
         <Results menu={this.state.menu} />
-
 
       </div>
     )
