@@ -63,6 +63,7 @@ const menu = {
   }
 };
 
+let lastOrderId = 457; //order numbering starts from 457
 let orders = {};
 
 app.get('/', function (req, res) {
@@ -71,6 +72,10 @@ app.get('/', function (req, res) {
 
 app.get('/menu', function (req, res) {
   res.json(menu);
+});
+
+app.get('/delete/:{orderToDelete}', function (req, res) {
+  res.json(orders);
 });
 
 app.get('/orders', function (req, res) {
@@ -88,21 +93,20 @@ app.get('/menu/:menuItemId', function (req, res) {
     res.status(404).json({ error: 'Sorry, menu item not found' })
   }
 });
-// app.get('/orders', function (req, res) {
-//   res.json(order);
-// });
-let lastOrderId = 457;
 
-app.post('/menu', function (req, res) {
-  // orders = req.body;
+app.post('/orders', function (req, res) {
   const newOrder = req.body;
   lastOrderId++;
   orders[lastOrderId] = newOrder;
-
-  // res.json('admin', newOrder);
-  // console.log(orders);
 });
 
+app.delete('/delete/:orderToDelete', function (req, res) {
+  console.log("order to delete on server", req.params.orderToDelete)
+  const key = req.params.orderToDelete;
+  delete orders[key];
+  console.log("delete was successful")
+  res.status(204).json({ ok: "Delete was successful" })
+});
 
 app.listen(8080, function () {
   console.log('127.0.0.1:8080');

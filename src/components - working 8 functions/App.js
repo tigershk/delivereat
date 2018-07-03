@@ -33,13 +33,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="header">
-          <img src='./static/pizza- colour.png' className="header__logo" /><h1>Pizza Right Now!</h1>
-          <div className="header__media">
-            <img src="./static/facebook.png" className="header__media--fb" />
-          </div>
-          <div>
-            <img src="./static/twitter.png" className="header__media--twitter" />
-
+          <img src='./static/pizzalogo.png' className="header__logo" /><h1>Pizza Right Now!</h1>
+          <div class="header__media">
+            <img src="./static/twitter.png" height="50px" />
           </div>
           <h2>☎ 0777 112 8224</h2>
         </div>
