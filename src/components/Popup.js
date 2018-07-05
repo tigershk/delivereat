@@ -46,31 +46,40 @@ class Popup extends React.Component {
     return (
       <div className='popup'>
         <div className='popup_inner'>
-          <h2>{this.props.name}</h2>
+          <header className="main__menu--article-h2">
+            {this.props.name}
+          </header>
           <br />
           <br />
-
-          <button
-            onClick={this.handleDecrease}
-            className="menu__item--confirm"
-            id="menu__item--confirm"
-            value="decrease"
-          >➖
+          <header className="main__menu--article-h2">
+            <button
+              onClick={this.handleDecrease}
+              className="popup__amount"
+              value="decrease"
+            >➖
           </button>
 
-          {this.state.orderQuantity}
+            {this.state.orderQuantity}
 
-          <button
-            onClick={this.handleIncrease}
-            className="menu__item--confirm"
-            id="menu__item--confirm"
-            value="increase"
-          >➕
+
+            <button
+              onClick={this.handleIncrease}
+              className="popup__amount"
+              value="increase"
+            >➕
           </button>
+          </header>
 
           <br />
-          <button onClick={this.props.closePopup}>Cancel</button>
-          <button onClick={this.addOrder}
+          <button
+            onClick={this.props.closePopup}
+            className="popup__cancel"
+          >Cancel
+            </button>
+
+          <button
+            onClick={this.addOrder}
+            className="popup__add"
             name="add"
           >Add for {popupTotal}
           </button>

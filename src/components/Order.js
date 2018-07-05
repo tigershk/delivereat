@@ -29,11 +29,10 @@ class Order extends React.Component {
     let billTotal = 0;
 
     return (
-      <div className="order">
-        <h2>Order history </h2>
-        <History receiveRepeatOrder={this.receiveRepeatOrder} />
+      <div className="main__order">
+        <img className="main__order--img" src="./static/unsplash-food.jpg" />
 
-        <div className="bill__total">
+        <div className="main__order--lines">
           {Object.keys(this.props.order).map(orderItem => {
             for (let i = 0; i < this.props.menu.length; i++) {
               if (this.props.menu[i].name === orderItem) {
@@ -51,8 +50,10 @@ class Order extends React.Component {
           <Bill billTotal={billTotal}
             order={this.props.order} />
         </div>
+        <h2>Order history </h2>
+        <History receiveRepeatOrder={this.receiveRepeatOrder} />
 
-      </div>
+      </div >
 
     )
   }

@@ -9,82 +9,89 @@ app.set('view engine', 'hbs');
 const menu = {
   1: {
     id: 1,
-    name: "Pepperoni Feast",
-    img: "./static/pepperoni.jpg",
-    price: 14.99
+    name: "Bacon bap",
+    category: "breakfast",
+    price: 2.80
   },
   2: {
     id: 2,
-    name: "Veggiesaurus",
-    img: "./static/veggiesaurus.jpg",
-    price: 12.99
+    name: "Sausage bap",
+    category: "breakfast",
+    description: "",
+    price: 2.80
   },
   3: {
     id: 3,
-    name: "Chicken Supreme",
-    img: "./static/chicken.jpg",
-    price: 14.99
+    name: "Egg & cress bap",
+    category: "breakfast",
+    description: "",
+    price: 2.20
   },
   4: {
     id: 4,
-    name: "Veggie Sizzler",
-    img: "./static/margherita.jpg",
-    price: 12.99
+    name: "Porridge with berry compote, honey or coconut jam",
+    category: "breakfast",
+    description: "",
+    price: 1.90
   },
   5: {
     id: 5,
-    name: "Chicken Strips",
-    img: "./static/chickenStrips.jpg",
-    price: 7.99
+    name: "Beef Rendang with rice",
+    category: "lunch",
+    description: "Slow cooked topsite of beef in a rich lemongrass and coconut milk curry",
+    price: 6.90
   },
   6: {
     id: 6,
-    name: "Potato Wedges",
-    img: "./static/wedges.jpg",
-    price: 6.99
+    name: "Malaysian Chicken Curry with rice",
+    category: "lunch",
+    description: "Chicken and long beans cooked with yidu chillies, blend of herbs and coconut milk",
+    price: 5.90
   },
   7: {
     id: 7,
-    name: "Mixed Leaf Salad",
-    img: "./static/salad.jpg",
-    price: 12.99
+    name: "Aubergine Curry with rice",
+    category: "lunch",
+    description: "Aubergines moorishly infused with yidu chillies, blend of herbs and coconut milk",
+    price: 5.90
   },
   8: {
     id: 8,
-    name: "Cheesy Garlic Bread",
-    img: "./static/garlicbread.jpg",
-    price: 14.99
+    name: "Laksa Noodles",
+    category: "lunch",
+    description: "King prawns and tofu in a spicy seafood broth served with traditional boiled egg  & noodles",
+    price: 6.90
   },
   9: {
     id: 9,
-    name: "Chocolate Ice Cream",
-    img: "./static/icecream.jpg",
-    price: 4.99
+    name: "Grilled dumplings",
+    category: "side",
+    description: "Little parcels of veggie goodness served with a rice vinegar dip",
+    price: 2.90
+  },
+  10: {
+    id: 10,
+    name: "Spring rolls",
+    category: "side",
+    description: "Mini veggie rolls served with a sweet chilli dip",
+    price: 2.90
   }
 };
 
 let lastOrderId = 457; //order numbering starts from 457
 let orders = {};
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/menu', function (req, res) {
+// Retrieve all menu items 
+app.get('/menu', (req, res) => {
   res.json(menu);
 });
 
-app.get('/delete/:{orderToDelete}', function (req, res) {
-  res.json(orders);
-});
-
-app.get('/orders', function (req, res) {
-  console.log("server orders", orders)
-  res.json(orders)
-  // res.render('admin', orders);
-})
-
-app.get('/menu/:menuItemId', function (req, res) {
+// Retrieve specified menu item
+app.get('/menu/:menuItemId', (req, res) => {
   const item = menu[req.params.menuItemId];
   if (item) {
     res.json(item)
@@ -94,13 +101,33 @@ app.get('/menu/:menuItemId', function (req, res) {
   }
 });
 
-app.post('/orders', function (req, res) {
+// Retrieve all orders
+app.get('/orders', (req, res) => {
+  console.log("server orders", orders)
+  res.json(orders)
+})
+
+// Create new order
+app.post('/orders', (req, res) => {
   const newOrder = req.body;
   lastOrderId++;
   orders[lastOrderId] = newOrder;
 });
 
-app.delete('/delete/:orderToDelete', function (req, res) {
+// Update current order
+app.patch('/update/:{ordertoUpdate}', (req, res) => {
+  const update = req.body;
+
+  orders[req.params.ordertoUpdate] = Object.assign({},
+    orders[req.params.ordertoUpdate],
+    update
+  );
+
+  res.json(update);
+});
+
+// Delete specified order
+app.delete('/delete/:orderToDelete', (req, res) => {
   console.log("order to delete on server", req.params.orderToDelete)
   const key = req.params.orderToDelete;
   delete orders[key];
@@ -108,7 +135,7 @@ app.delete('/delete/:orderToDelete', function (req, res) {
   res.status(204).json({ ok: "Delete was successful" })
 });
 
-app.listen(8080, function () {
+app.listen(8080, () => {
   console.log('127.0.0.1:8080');
 });
 
