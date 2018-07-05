@@ -13,6 +13,7 @@ class App extends React.Component {
     this.getmenu = this.getmenu.bind(this);
     this.createOrder = this.createOrder.bind(this);
     this.repeatOrder = this.repeatOrder.bind(this);
+    this.amendOrder = this.amendOrder.bind(this);
   }
 
   getmenu() {
@@ -42,8 +43,25 @@ class App extends React.Component {
 
   }
 
-  repeatOrder(repeatOrder) {
+  amendOrder(orderName, orderQuantity) {
 
+    let custOrder;
+    if (orderQuantity === 0) {
+      //delete that order from state make a copy and set it
+      console.log("equal zero")
+      custOrder = Object.assign({}, this.state.order);
+      delete custOrder[orderName];
+    }
+    else {
+
+      custOrder = (Object.assign({}, this.state.order, { [orderName]: orderQuantity }))
+    }
+
+    this.setState({ order: custOrder })
+
+  }
+
+  repeatOrder(repeatOrder) {
     this.setState({ order: repeatOrder });
 
   }
@@ -66,7 +84,8 @@ class App extends React.Component {
 
           <Order order={this.state.order}
             menu={this.state.menu}
-            repeatOrder={this.repeatOrder} />
+            repeatOrder={this.repeatOrder}
+            amendOrder={this.amendOrder} />
         </div>
 
       </div>
