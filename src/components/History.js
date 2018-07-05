@@ -1,5 +1,5 @@
 import React from "react";
-import Orders from "./Orders";
+import OrderHistory from "./OrderHistory";
 
 //This component retrieves the user's order history from the server and allows
 // them to repeat the order or delete their order history
@@ -11,42 +11,11 @@ class History extends React.Component {
 
     this.state = {
       orderHistory: {},
-
     }
 
-    this.handleCheckout = this.handleCheckout.bind(this);
     this.getHistory = this.getHistory.bind(this);
     this.deleteHistory = this.deleteHistory.bind(this);
-    this.overwriteOrder = this.overwriteOrder.bind(this);
-  }
-
-  //Checkout function that POSTs order back to server for restaurant manager to view at /orders
-  handleCheckout(event) {
-    event.preventDefault();
-
-    fetch('/orders', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(this.props.order)
-    })
-      .then(response => response.json()
-      )
-      .then(function (body) {
-        console.log("Following order was sent to server: ", body)
-      });
-
-    // delete current order lines
-    this.props.clearOrder();
-  }
-
-  //Repeats order
-  overwriteOrder(orderToAdd) {
-
-    Object.keys(this.state.orderHistory[orderToAdd]).forEach(item => {
-      this.props.repeatOrder(item, this.state.orderHistory[orderToAdd][item]
-      )
-    }
-    )
+    this.receiveRepeatOrder = this.receiveRepeatOrder.bind(this);
   }
 
   //Retrieve order from server and set in orderHistory state
@@ -59,6 +28,11 @@ class History extends React.Component {
       .catch(err => {
         console.log(err)
       })
+  }
+
+  //Repeats order
+  receiveRepeatOrder(orderToAdd) {
+    this.props.receiveRepeatOrder(this.state.orderHistory[orderToAdd])
   }
 
   //Delete previous order number on server - not working
@@ -92,26 +66,17 @@ class History extends React.Component {
           Previous Orders
         </button>
 
-        <button
-          type="submit" className="bill__checkout"
-          onClick={this.handleCheckout}>
-          Checkout
-        </button>
-
         {/* Copies array of keys, reverses and then loops through to get reverse chronological order */}
         {Object.keys(this.state.orderHistory).slice().reverse().map(prevKey => {
           let orderNum = prevKey;
-          return (
-            <div className="order-history">
 
-              <Orders
-                key={prevKey}
+          return (
+            <div className="order-history" key={orderNum}>
+              <OrderHistory
                 orderNum={orderNum}
                 prevOrder={this.state.orderHistory[prevKey]}
-                orderHistory={this.state.orderHistory}
                 deleteHistory={this.deleteHistory}
-                overwriteOrder={this.overwriteOrder}
-
+                receiveRepeatOrder={this.receiveRepeatOrder}
               />
             </div>
           )

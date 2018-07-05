@@ -1,14 +1,19 @@
 import React from 'react';
-import Results from "./Results";
+import MenuItems from "./MenuItems";
+import Order from "./Order";
 
 class App extends React.Component {
   constructor() {
     super();
-    this.state = { menu: [] }
+    this.state = {
+      menu: [],
+      order: {}
+    }
 
-    this.getmenu = this.getmenu.bind(this)
+    this.getmenu = this.getmenu.bind(this);
+    this.createOrder = this.createOrder.bind(this);
+    this.repeatOrder = this.repeatOrder.bind(this);
   }
-
 
   getmenu() {
     fetch('/menu')
@@ -27,24 +32,42 @@ class App extends React.Component {
     this.getmenu()
   }
 
+  createOrder(orderName, orderQuantity) {
+
+    const custOrder = (Object.keys(this.state.order)).indexOf(orderName) === -1 ?
+      (Object.assign({}, this.state.order, { [orderName]: orderQuantity })) :
+      (Object.assign({}, this.state.order, { [orderName]: orderQuantity + this.state.order[orderName] }))
+
+    this.setState({ order: custOrder })
+
+  }
+
+  repeatOrder(repeatOrder) {
+
+    this.setState({ order: repeatOrder });
+
+  }
+
+
   render() {
-    // console.log(this.state.menu)
 
     return (
       <div className="App">
         <div className="header">
-          <img src='./static/pizza- colour.png' className="header__logo" /><h1>Pizza Right Now!</h1>
+          <h1>Ken's Kitchen</h1>
           <div className="header__media">
-            <img src="./static/facebook.png" className="header__media--fb" />
-          </div>
-          <div>
-            <img src="./static/twitter.png" className="header__media--twitter" />
-
+            <img src="./static/twitter.png" height="50px" />
           </div>
           <h2>☎ 0777 112 8224</h2>
         </div>
 
-        <Results menu={this.state.menu} />
+        <MenuItems menu={this.state.menu}
+          createOrder={this.createOrder} />
+
+        <Order order={this.state.order}
+          menu={this.state.menu}
+          repeatOrder={this.repeatOrder} />
+
 
       </div>
     )

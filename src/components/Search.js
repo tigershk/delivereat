@@ -1,5 +1,6 @@
 import React from 'react';
 
+//Don't think I need this component
 
 class Search extends React.Component {
   constructor() {
