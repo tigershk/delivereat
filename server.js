@@ -22,14 +22,14 @@ const menu = {
   },
   3: {
     id: 3,
-    name: "Egg & cress bap",
+    name: "Egg & Cress bap",
     category: "breakfast",
     description: "",
     price: 2.20
   },
   4: {
     id: 4,
-    name: "Porridge with berry compote, honey or coconut jam",
+    name: "Porridge with berry compote or coconut jam",
     category: "breakfast",
     description: "",
     price: 1.90

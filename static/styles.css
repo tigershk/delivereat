@@ -13,17 +13,46 @@ body {
   flex:12;
   align-items: center;
   justify-content: space-between;
-
   padding-left:20px;
   height:50px;
   margin:auto;
   color:black;
 }
 
+.title{
+font-size:48px;
+font-weight: bold;
+
+}
+
+.header__right{
+  
+font-size:25px;
+margin-left:auto;
+}
+
+.header__login{
+  
+  height: 50px;
+  font-family: 'Oswald', sans-serif;
+  font-size:20px;
+  font-weight: 400;
+  /* width:35%; */
+  background-color: rgb(56, 83, 83);
+  color:white;
+  border-style:none;
+  border-radius:2%;
+  margin-left:20px;
+  
+  }
+
 li{
   list-style-type: none;
 }
 
+input {
+  height:30px;
+}
 /* Main
 -----------------------------------------------------------------*/
 .main{
@@ -50,7 +79,7 @@ li{
 .main__menu--article{
   flex:8;
 
-  background-color: rgb(233, 240, 236,0.5);
+  background-color: rgb(233, 240, 236);
   min-width: 400px; 
   border-radius:2%;
   box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
@@ -86,11 +115,10 @@ li{
   top: 30%;
   bottom: 30%;
   border-radius: 2%;
-  margin: auto;
+  padding-top:20px;
 
   background: white;
   text-align: center;
- 
   
 }
 
@@ -104,12 +132,18 @@ background-color: aliceblue;
 border-style: none;
 }
 
+.popup__divider{
+  margin-top:20px;
+  border-top: 1px solid grey;
+  box-shadow: 6px rgba(0,0,0,0.18);
+  
+}
 .popup__add{
  
   margin-left:20px;
   margin-right:20px;
   height: 50px;
-  margin-bottom:5px;
+  /* margin-top:15px; */
   font-family: 'Oswald', sans-serif;
   font-size:20px;
   font-weight: 400;
@@ -123,7 +157,7 @@ border-style: none;
 .popup__cancel{
   margin-left:20px;
   margin-right:20px;
-  margin-bottom:5px;
+  /* margin-top:15px; */
   height: 50px;
   font-family: 'Oswald', sans-serif;
   font-size:20px;
@@ -156,16 +190,52 @@ justify-content: center;
 .main__order--lines{
   margin-top:10px;
   text-align:right;
-  font-size:18px
+  font-size:18px;
+  margin-right:20px;
   }
  .main__order--amount{
   border-radius:50%;
   height:25px;
   width:25px;
-  margin-left:20px;
-  margin-right:20px;
+  margin-left:10px;
+  margin-right:10px;
   background-color: aliceblue;
   border-style: none;
+  /* margin-right:20px; */
 
  }
 
+ .bill__checkout{
+ 
+  margin-left:20px;
+
+  height: 50px;
+  margin-top:15px;
+  font-family: 'Oswald', sans-serif;
+  font-size:20px;
+  font-weight: 400;
+  width:35%;
+  background-color: rgb(56, 83, 83);
+  color:white;
+  border-style:none;
+  border-radius:2%;
+  }
+/* Order History
+---------------------------------------------------------*/
+.order__history{
+  margin-top:10px;
+  text-align:left;
+  font-size:18px;
+  margin-left:20px;
+}
+
+/* Admin
+------------------------------------------*/
+
+.admin__history{
+  margin-top:10px;
+  text-align:left;
+  font-size:25px;
+  margin-left:20px;
+
+}
