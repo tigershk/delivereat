@@ -1,6 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+// import keys from './twiliokeys';
+const accountSid = "ACb43bace59bfbef821723be7b56b1b7a6";
+const authToken = "2e1f9e637912d69716ea8c490efb4033";
+const client = require('twilio')(accountSid, authToken);
+
 
 app.use(bodyParser.json());
 app.use('/static', express.static('static'));
@@ -103,7 +108,7 @@ app.get('/menu/:menuItemId', (req, res) => {
 
 // Retrieve all orders
 app.get('/orders', (req, res) => {
-  console.log("server orders", orders)
+  // console.log("server orders", orders)
   res.json(orders)
 })
 
@@ -134,6 +139,16 @@ app.delete('/delete/:orderToDelete', (req, res) => {
   console.log("delete was successful")
   res.status(204).json({ ok: "Delete was successful" })
 });
+
+app.post('/sendsms', bodyParser.json(), (req, res) => {
+  console.log("hllo")
+  client.messages.create({
+    to: "+447762071057",//req.body.data, //"+447762071057",
+    from: "+441298918018",
+    body: "Your order is on it's way!"
+  })
+    .then((message) => console.log(message.sid))
+})
 
 app.listen(8080, () => {
   console.log('127.0.0.1:8080');

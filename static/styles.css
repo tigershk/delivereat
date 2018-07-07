@@ -232,10 +232,61 @@ justify-content: center;
 /* Admin
 ------------------------------------------*/
 
-.admin__history{
-  margin-top:10px;
+.admin{
+  margin-top:50px;
+  /* display:inline;
   text-align:left;
   font-size:25px;
-  margin-left:20px;
+  margin-left:20px; */
 
+}
+
+.admin__table{
+table-layout: fixed;
+margin-left:20px;
+font-size:20px;
+border-collapse: collapse;
+width: 90%;
+white-space: nowrap;
+
+/* column-width:  */
+}
+
+.admin__table td,th{
+  border:1px solid black;
+  text-align:left;
+  padding:8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  }
+
+  .admin__table--order{
+    width:10%;
+  }
+
+  .admin__table--quantity{
+    width:10%;
+  }
+  
+  .admin__table--item{
+    width:40%;
+  }
+  
+  .admin__table--contact{
+    width:20%
+  }
+  
+  .admin__table--status{
+    width:20%
+  }
+
+tr:nth-child(even){
+  background-color: aliceblue
+}
+
+.status__menu{
+  font-family: 'Oswald', sans-serif;
+  width:100%;
+  font-size:20px
 }
