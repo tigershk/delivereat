@@ -68,7 +68,6 @@ class App extends React.Component {
 
   repeatOrder(repeatOrder) {
     this.setState({ order: repeatOrder });
-
   }
   receiveAdmin(verification) {
 

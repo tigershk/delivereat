@@ -76,7 +76,8 @@ class Order extends React.Component {
           {/* </header> */}
 
           <Bill billTotal={billTotal}
-            order={this.props.order} />
+            order={this.props.order}
+            menu={this.props.menu} />
         </div>
         <History receiveRepeatOrder={this.receiveRepeatOrder} />
 

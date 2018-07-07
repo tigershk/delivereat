@@ -1,36 +1,21 @@
 import React from 'react';
+import Checkout from './Checkout';
 
 class Bill extends React.Component {
   constructor() {
     super();
     this.state = {
-      userCode: ''
+      showPopup: false
     }
-
     this.handleChange = this.handleChange.bind(this);
-    this.handleCheckout = this.handleCheckout.bind(this);
+    this.togglePopup = this.togglePopup.bind(this);
   }
 
-  //Checkout function that POSTs order back to server for restaurant manager to view at /orders
-
-  // Need to work out how to clear order on checkout - maybe do a popup or navigate to new area. conditional rendering?
-
-  handleCheckout(event) {
-    event.preventDefault();
-
-    fetch('/orders', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(this.props.order)
-    })
-      .then(response => response.json()
-      )
-      .then(function (body) {
-      });
-
-    // this.storeHistory();
-    // this.props.receiveOrder('delete', 'delete')
-
+  //toggle login popup on and off
+  togglePopup() {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
   }
 
   //Input handler for user entering voucher code
@@ -41,40 +26,34 @@ class Bill extends React.Component {
 
   render() {
 
-    let delivery_fee = 2.50;
-    let discount_code = 'CL101';
-
     return (
       <div className="bill">
         <button
           type="submit" className="bill__checkout"
-          onClick={this.handleCheckout}>
-          Go to Checkout
+          onClick={this.togglePopup}>
+          Checkout
         </button>
+        {this.state.showPopup ?
+          <Checkout
+            closePopup={this.togglePopup}
+            billTotal={this.props.billTotal}
+            order={this.props.order}
+            menu={this.props.menu}
+          />
+          : null
+        }
 
         <div className="bill_total--sum">
           <p>
             Subtotal: {(this.props.billTotal).toLocaleString('en-gb', { style: 'currency', currency: 'GBP' })}
             <br />
-            Delivery fee: {(delivery_fee).toLocaleString('en-gb', { style: 'currency', currency: 'GBP' })}
 
-            <br />
-            Total: {((this.props.billTotal) + (delivery_fee)).toLocaleString('en-gb', { style: 'currency', currency: 'GBP' })}
-
-            <br />
-            <input type="text" name="voucher" placeholder="Discount Code" value={this.state.userCode} onChange={this.handleChange} />
           </p>
-          {this.state.userCode === discount_code
-            ? <p>10% discount applied<br />
-              You saved:{(((this.props.billTotal) + (delivery_fee)) * .1).toLocaleString('en-gb', { style: 'currency', currency: 'GBP' })}<br />
-              Total to pay: {(((this.props.billTotal) + (delivery_fee)) * .9).toLocaleString('en-gb', { style: 'currency', currency: 'GBP' })}</p>
-            : ''
-          }
         </div>
       </div>
 
     )
   }
-}
 
+}
 export default Bill;
