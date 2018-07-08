@@ -19,6 +19,7 @@ class Login extends React.Component {
     });
     this.props.receiveAdmin(false)
   }
+
   //toggle login popup on and off
   checkLogin(event) {
     if (event.target.name = "Login") {

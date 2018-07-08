@@ -19,6 +19,7 @@ class App extends React.Component {
     this.repeatOrder = this.repeatOrder.bind(this);
     this.amendOrder = this.amendOrder.bind(this);
     this.receiveAdmin = this.receiveAdmin.bind(this);
+    this.deleteOrder = this.deleteOrder.bind(this)
   }
 
   getmenu() {
@@ -46,6 +47,11 @@ class App extends React.Component {
 
     this.setState({ order: custOrder })
 
+  }
+
+  deleteOrder() {
+
+    this.setState({ order: {} })
   }
 
   amendOrder(orderName, orderQuantity) {
@@ -95,10 +101,15 @@ class App extends React.Component {
       <div className="App">
         <div className="header">
           <header className="title">KEN'S KITCHEN</header>
-          {/* <div className="header__media"> */}
-          {/* <img src="./static/twitter.png" height="50px" /> */}
-          {/* </div> */}
           <div className="header__right">
+            <a href="https://www.facebook.com/kenchowkitchen/" target="_blank">
+              <img src="./static/fb-bw.png" className="header__fbimg"
+              />
+            </a>
+            <a href="https://www.instagram.com/explore/locations/1032455974/kens-kitchen-london/?hl=en" target="_blank">
+              <img src="./static/instagram-bw.png" className="header__img"
+              />
+            </a>
             ☎ 020 7033 0447
           </div>
           <Login receiveAdmin={this.receiveAdmin} />
@@ -114,8 +125,10 @@ class App extends React.Component {
 
             <Order order={this.state.order}
               menu={this.state.menu}
-              repeatOrder={this.repeatOrder}
-              amendOrder={this.amendOrder} />
+              receiveRepeatOrder={this.repeatOrder}
+              amendOrder={this.amendOrder}
+              deleteOrder={this.deleteOrder}
+              delete />
           </div>
         }
       </div>

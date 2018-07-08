@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Checkout extends React.Component {
+class CheckoutPopup extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -114,4 +114,4 @@ class Checkout extends React.Component {
   }
 }
 
-export default Checkout;
+export default CheckoutPopup;

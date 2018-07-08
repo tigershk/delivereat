@@ -34,6 +34,7 @@ function OrderHistory({ orderNum, prevOrder, deleteHistory, receiveRepeatOrder }
 
 
       {Object.keys(prevOrder).map(lineItem => {
+        if (lineItem === "mobile") return;
         return (
           <li key={lineItem} className="order-line">
 

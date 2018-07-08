@@ -77,11 +77,11 @@ class Admin extends React.Component {
                   <td></td>
                   <td></td>
 
-                  <td> 0776 207 1057 </td>
+                  <td> </td>
                   <td> <select className="status__menu" name={orderNum} value={this.state.orderStatus} onChange={this.handleChange} >
                     <option value="Received">Received</option>
                     <option value="In Progress">In Progress</option>
-                    <option value="In Transit">In Transit</option>
+                    <option value="In Transit">In Transit - send SMS</option>
                     <option value="Delivered">Delivered</option>
                   </select>
                   </td>
